@@ -1,4 +1,4 @@
-console.log("This is a Notes Application");
+// Java Script to add User Interaction in the Notes Application Website
 showText();
 var count = 0;
 
