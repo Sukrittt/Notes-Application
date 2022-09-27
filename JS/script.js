@@ -66,7 +66,6 @@ function showText() {
       </div>`;
     let itemVariable = localStorage.getItem("notes");
     itemVariable = JSON.parse(itemVariable);
-    // console.log(itemVariable);
   });
   let notesElement = document.getElementById("notes");
   notesElement.innerHTML = html;
@@ -77,7 +76,6 @@ function showText() {
 
   let cardHeading = document.getElementsByClassName("card-heading");
   let headingStorage = JSON.parse(localStorage.getItem("heading"));
-
   for (let i = 0; i < headingStorage.length; i++) {
     cardHeading[i].innerText = headingStorage[i];
   }
