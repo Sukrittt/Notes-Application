@@ -1,5 +1,5 @@
 // Java Script to add User Interaction in the Notes Application Website
-showText();
+// showText();
 var count = 0;
 
 //Adding title along with the note and displaying it inplace of Note 1, Note 2, etc.
