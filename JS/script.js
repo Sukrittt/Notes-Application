@@ -1,5 +1,5 @@
 // Java Script to add User Interaction in the Notes Application Website
-// showText();
+showText();
 var count = 0;
 
 //Adding title along with the note and displaying it inplace of Note 1, Note 2, etc.
@@ -19,7 +19,7 @@ document.getElementById("submitButton").addEventListener("click", function (e) {
     headingObj.push(textInput2.value);
     localStorage.setItem("heading", JSON.stringify(headingObj));
     textInput2.value = "";
-    // showText();
+    showText();
   }
   let textInput = document.getElementById("floatingTextarea");
   if (textInput.value == "") {
@@ -43,42 +43,40 @@ function showText() {
   let heading = localStorage.getItem("heading");
   if (heading == null) {
     headingObj = [];
-  } else {
-    headingObj = JSON.parse(heading);
   }
   let notes = localStorage.getItem("notes");
   if (notes == null) {
     notesObj = [];
-  } else {
-    notesObj = JSON.parse(notes);
   }
   let html = "";
-  let i = 1;
   let cardTitle = "";
-  //Iterating through the Array and displaying the notes
-  notesObj.forEach(function (element, index) {
-    html += `<div class="notesCard card me-3 mb-3 scroll" style="width: 18rem;">
-        <div class="card-body">
+  if (notes != null) {
+    headingObj = JSON.parse(heading);
+    notesObj = JSON.parse(notes);
+    //Iterating through the Array and displaying the notes
+    notesObj.forEach(function (element, index) {
+      html += `<div class="notesCard card me-3 mb-3 scroll" style="width: 18rem;">
+    <div class="card-body">
           <h4 class="card-heading"></h4>
           <p class="para">${element}</p>
           <button id="${index}" onclick="deleteText(this.id)" class="btn" id="deleteBtn">Delete Note</button>
         </div>
-      </div>`;
-    let itemVariable = localStorage.getItem("notes");
-    itemVariable = JSON.parse(itemVariable);
-  });
+        </div>`;
+      let itemVariable = localStorage.getItem("notes");
+      itemVariable = JSON.parse(itemVariable);
+    });
+    let cardHeading = document.getElementsByClassName("card-heading");
+    let headingStorage = JSON.parse(localStorage.getItem("heading"));
+    for (let i = 0; i < headingStorage.length; i++) {
+      cardHeading.innerText = headingStorage[i];
+    }
+  }
   let notesElement = document.getElementById("notes");
   notesElement.innerHTML = html;
 
   /*Here what I am trying to do is that im extracting the heading values from
   local storage = "heading" and then editing the inner text of current heading
   and assigining new heading values imported from local storage .*/
-
-  let cardHeading = document.getElementsByClassName("card-heading");
-  let headingStorage = JSON.parse(localStorage.getItem("heading"));
-  for (let i = 0; i < headingStorage.length; i++) {
-    cardHeading[i].innerText = headingStorage[i];
-  }
 
   //If the number of notes entered is 0 then show a default message untill a new note is entered
   if (notesObj.length == 0) {
